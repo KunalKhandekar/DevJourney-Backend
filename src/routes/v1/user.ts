@@ -13,16 +13,32 @@ import ValidationError from '@/middlewares/validationError';
 /**
  * Controllers
  */
-import getCurrentUser from '@/controllers/v1/user/get_current_user';
-import updateCurrentUser from '@/controllers/v1/user/update_current_user';
 import deleteCurrentUser from '@/controllers/v1/user/delete_current_user';
+import deleteUser from '@/controllers/v1/user/delete_user';
+import getAllUsers from '@/controllers/v1/user/get_all_users';
+import getCurrentUser from '@/controllers/v1/user/get_current_user';
+import getUser from '@/controllers/v1/user/get_user';
+import updateCurrentUser from '@/controllers/v1/user/update_current_user';
 
 /**
  * Validators
  */
-import { updateCurrentUserValidations } from '@/validators/v1/user';
+import {
+  getAllUserValidations,
+  updateCurrentUserValidations,
+  userIdValidation,
+} from '@/validators/v1/user';
 
 const router = Router();
+
+router.get(
+  '/',
+  authenticate,
+  authorize(['admin']),
+  getAllUserValidations,
+  ValidationError,
+  getAllUsers,
+);
 
 router.get(
   '/current',
@@ -45,6 +61,24 @@ router.delete(
   authenticate,
   authorize(['admin', 'user']),
   deleteCurrentUser,
+);
+
+router.get(
+  '/:userId',
+  authenticate,
+  authorize(['admin']),
+  userIdValidation,
+  ValidationError,
+  getUser,
+);
+
+router.delete(
+  '/:userId',
+  authenticate,
+  authorize(['admin']),
+  userIdValidation,
+  ValidationError,
+  deleteUser,
 );
 
 export default router;

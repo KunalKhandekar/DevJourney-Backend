@@ -20,10 +20,9 @@ const config = {
   JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET as string,
   ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY as ms.StringValue,
   REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY as ms.StringValue,
-  WHITELIST_ADMIN_MAILS: [
-    'sahil@s.com',
-    'kunalkhandekar.dev@gmail.com'
-  ]
+  WHITELIST_ADMIN_MAILS: ['sahil@s.com', 'kunalkhandekar.dev@gmail.com'],
+  defaultResLimit: 20,
+  defaultResOffset: 0,
 };
 
 export default config;

@@ -1,7 +1,7 @@
 /**
  * Node modules
  */
-import { body } from 'express-validator';
+import { body, param, query } from 'express-validator';
 
 /**
  * Models
@@ -63,4 +63,19 @@ export const updateCurrentUserValidations = [
     .isLength({ max: 20 })
     .withMessage('Last name must be less than 20 characters'),
   ...socialLinksValidation,
+];
+
+export const getAllUserValidations = [
+  query('limit')
+    .optional()
+    .isInt({ min: 1, max: 50 })
+    .withMessage('Limit must be between 1 to 50'),
+  query('offset')
+    .optional()
+    .isInt({ min: 0 })
+    .withMessage('Offset must be a positive integer'),
+];
+
+export const userIdValidation = [
+  param('userId').notEmpty().isMongoId().withMessage('Invalid user ID'),
 ];
