@@ -1,5 +1,12 @@
-import User from '@/models/user';
+/**
+ * Node modules
+ */
 import { body } from 'express-validator';
+
+/**
+ * Models
+ */
+import User from '@/models/user';
 
 const socialLinks = [
   'website',

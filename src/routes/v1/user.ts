@@ -15,15 +15,11 @@ import ValidationError from '@/middlewares/validationError';
  */
 import getCurrentUser from '@/controllers/v1/user/get_current_user';
 import updateCurrentUser from '@/controllers/v1/user/update_current_user';
-
-/**
- * Models
- */
-import User from '@/models/user';
+import deleteCurrentUser from '@/controllers/v1/user/delete_current_user';
 
 /**
  * Validators
-*/
+ */
 import { updateCurrentUserValidations } from '@/validators/v1/user';
 
 const router = Router();
@@ -42,6 +38,13 @@ router.put(
   updateCurrentUserValidations,
   ValidationError,
   updateCurrentUser,
+);
+
+router.delete(
+  '/current',
+  authenticate,
+  authorize(['admin', 'user']),
+  deleteCurrentUser,
 );
 
 export default router;
