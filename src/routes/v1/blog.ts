@@ -19,12 +19,17 @@ import createBlog from '@/controllers/v1/blog/create_blog';
 import getAllBlogs from '@/controllers/v1/blog/get_all_blogs';
 import getBlogBySlug from '@/controllers/v1/blog/get_blog_by_slug';
 import getBlogsByUser from '@/controllers/v1/blog/get_blogs_by_user';
+import updateBlog from '@/controllers/v1/blog/update_blog';
 
 /**
  * Validators
  */
 import { paginationValidations } from '@/validators/v1';
-import { createBlogValidations, slugValidation } from '@/validators/v1/blog';
+import {
+  createBlogValidations,
+  slugValidation,
+  updateBlogValidations,
+} from '@/validators/v1/blog';
 import { userIdValidation } from '@/validators/v1/user';
 
 const upload = multer();
@@ -70,4 +75,14 @@ router.get(
   getBlogBySlug,
 );
 
+router.put(
+  '/:blogId',
+  authenticate,
+  authorize(['admin']),
+  upload.single('banner_image'),
+  updateBlogValidations,
+  ValidationError,
+  uploadBlogBanner('put'),
+  updateBlog,
+);
 export default router;

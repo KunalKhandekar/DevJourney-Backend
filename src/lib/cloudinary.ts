@@ -12,7 +12,7 @@ import { logger } from '@/lib/winston';
 /**
  * Types
  */
-import type { UploadApiErrorResponse, UploadApiResponse } from 'cloudinary';
+import type { UploadApiResponse } from 'cloudinary';
 
 cloudinary.config({
   cloud_name: config.CLOUDINARY_CLOUD_NAME,
