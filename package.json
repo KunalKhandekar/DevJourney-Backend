@@ -30,6 +30,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@logtail/node": "^0.5.6",
+    "@logtail/winston": "^0.5.6",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.8.0",
     "compression": "^1.8.1",

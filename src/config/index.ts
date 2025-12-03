@@ -26,6 +26,8 @@ const config = {
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME as string,
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY as string,
   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET as string,
+  LOGTAIL_SOURCE_TOKEN: process.env.LOGTAIL_SOURCE_TOKEN as string,
+  LOGTAIL_INGESTING_HOST: process.env.LOGTAIL_INGESTING_HOST as string,
 };
 
 export default config;
