@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "start": "node dist/server.js",
-    "build": "tsc & tsc-alias",
+    "build": "tsc && tsc-alias",
     "start:prod": "pm2 start dist/server.js --name devJourney"
   },
   "keywords": [],
