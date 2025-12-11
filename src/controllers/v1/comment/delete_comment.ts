@@ -44,8 +44,6 @@ const deleteComment = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    console.log({comment, userId, user});
-
     if (!comment.userId.equals(userId) && user?.role !== 'admin') {
       res.status(403).json({
         code: 'AuthorizationError',

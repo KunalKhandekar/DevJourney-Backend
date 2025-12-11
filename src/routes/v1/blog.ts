@@ -11,6 +11,7 @@ import authenticate from '@/middlewares/authenticate';
 import authorize from '@/middlewares/authorize';
 import uploadBlogBanner from '@/middlewares/uploadBlogBanner';
 import ValidationError from '@/middlewares/validationError';
+import { verifyToken } from '@/middlewares/verify_token';
 
 /**
  * Controllers
@@ -68,7 +69,7 @@ router.get(
 
 router.get(
   '/:slug',
-  // authenticate,
+  verifyToken,
   // authorize(['admin', 'user']),
   slugValidation,
   ValidationError,

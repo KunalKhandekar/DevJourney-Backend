@@ -9,6 +9,7 @@ import { logger } from '@/lib/winston';
 import Blog from '@/models/blog';
 import User from '@/models/user';
 import Comment from '@/models/comment';
+import Like from '@/models/like';
 
 /**
  * Types
@@ -58,9 +59,12 @@ const getBlogBySlug = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
+    const isLiked = await Like.exists({ blogId: blog._id, userId: user?._id });
+
     res.status(200).json({
       blog,
       comments,
+      isLiked,
     });
   } catch (error) {
     res.status(500).json({

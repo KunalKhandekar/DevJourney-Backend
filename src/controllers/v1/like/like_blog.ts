@@ -8,6 +8,7 @@ import { logger } from '@/lib/winston';
  */
 import Blog from '@/models/blog';
 import Like from '@/models/like';
+import user from '@/models/user';
 
 /**
  * Types
@@ -24,6 +25,7 @@ const likeBlog = async (req: Request, res: Response): Promise<void> => {
       res.status(404).json({
         code: 'NotFound',
         message: 'Blog not found',
+        userLiked: false,
       });
       return;
     }
@@ -34,6 +36,7 @@ const likeBlog = async (req: Request, res: Response): Promise<void> => {
       res.status(400).json({
         code: 'BadRequest',
         message: 'You already liked this blog',
+        userLiked: true,
       });
       return;
     }
@@ -50,6 +53,7 @@ const likeBlog = async (req: Request, res: Response): Promise<void> => {
 
     res.status(200).json({
       likesCount: blog.likesCount,
+      userLiked: true,
     });
   } catch (error) {
     res.status(500).json({
