@@ -19,7 +19,7 @@ const updateCurrentUser = async (
 ): Promise<void> => {
   const userId = req.userId;
 
-  const { email, password, role, username, firstName, lastName, socialLinks } =
+  const { email, password, role, username, firstName, lastName } =
     (req?.body as IUser) || {};
 
   try {
@@ -40,21 +40,6 @@ const updateCurrentUser = async (
     if (firstName !== undefined) user.firstName = firstName;
     if (lastName !== undefined) user.lastName = lastName;
 
-    if (!user.socialLinks) {
-      user.socialLinks = {};
-    }
-
-    if (socialLinks?.website !== undefined)
-      user.socialLinks.website = socialLinks.website;
-    if (socialLinks?.linkedIn !== undefined)
-      user.socialLinks.linkedIn = socialLinks.linkedIn;
-    if (socialLinks?.facebook !== undefined)
-      user.socialLinks.facebook = socialLinks.facebook;
-    if (socialLinks?.instagram !== undefined)
-      user.socialLinks.instagram = socialLinks.instagram;
-    if (socialLinks?.youtube !== undefined)
-      user.socialLinks.youtube = socialLinks.youtube;
-    if (socialLinks?.x !== undefined) user.socialLinks.x = socialLinks.x;
 
     await user.save();
 
