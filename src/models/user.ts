@@ -11,14 +11,6 @@ export interface IUser {
   role: 'admin' | 'user';
   firstName?: string;
   lastName?: string;
-  socialLinks?: {
-    website?: string;
-    linkedIn?: string;
-    facebook?: string;
-    instagram?: string;
-    x?: string;
-    youtube?: string;
-  };
 }
 
 /**
@@ -59,44 +51,6 @@ const userSchema = new Schema<IUser>(
     lastName: {
       type: String,
       maxLength: [20, 'Last name must be less than 20 characters'],
-    },
-    socialLinks: {
-      website: {
-        type: String,
-        maxLength: [100, 'Website address must be less than 100 characters'],
-      },
-      linkedIn: {
-        type: String,
-        maxLength: [
-          100,
-          'LinkedIn profile url must be less than 100 characters',
-        ],
-      },
-      facebook: {
-        type: String,
-        maxLength: [
-          100,
-          'Facebook profile url must be less than 100 characters',
-        ],
-      },
-      instagram: {
-        type: String,
-        maxLength: [
-          100,
-          'Instagram profile url must be less than 100 characters',
-        ],
-      },
-      x: {
-        type: String,
-        maxLength: [100, 'X profile url must be less than 100 characters'],
-      },
-      youtube: {
-        type: String,
-        maxLength: [
-          100,
-          'YouTube channel url must be less than 100 characters',
-        ],
-      },
     },
   },
   {

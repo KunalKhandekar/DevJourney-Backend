@@ -8,24 +8,6 @@ import { body, param, query } from 'express-validator';
  */
 import User from '@/models/user';
 
-const socialLinks = [
-  'website',
-  'linkedIn',
-  'facebook',
-  'instagram',
-  'youtube',
-  'x',
-];
-
-const socialLinksValidation = socialLinks.map((field) =>
-  body(`socialLinks.${field}`)
-    .optional()
-    .isURL()
-    .withMessage(`${field} must be a valid URL`)
-    .isLength({ max: 100 })
-    .withMessage(`${field} URL must be less than 100 characters`),
-);
-
 export const updateCurrentUserValidations = [
   body('username')
     .optional()
@@ -62,7 +44,6 @@ export const updateCurrentUserValidations = [
     .optional()
     .isLength({ max: 20 })
     .withMessage('Last name must be less than 20 characters'),
-  ...socialLinksValidation,
 ];
 
 export const getAllUserValidations = [

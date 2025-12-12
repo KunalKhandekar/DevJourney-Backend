@@ -48,7 +48,9 @@ export const sanitizeContent = (content: string): string => {
 };
 
 /**
- *
+ * Create a new subscriber if not already exists
+ * @param email The email of the subscriber
+ * @returns The created or existing subscriber
  */
 export const createSubscriber = async (email: string) => {
   try {
@@ -63,6 +65,12 @@ export const createSubscriber = async (email: string) => {
   }
 };
 
+/**
+ * Email template
+ * @param title The title of the email
+ * @param message The message of the email
+ * @returns The email HTML template
+ */
 export const emailTemplate = ({
   title,
   message,
